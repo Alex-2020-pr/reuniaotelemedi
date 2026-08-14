@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AM2 Telerradiologia — Avaliação do Projeto Telemedi</title>
+<style>
+  :root{
+    --navy:#0b2740;
+    --blue:#155eef;
+    --teal:#0ea5a6;
+    --green:#16a34a;
+    --amber:#d97706;
+    --red:#dc2626;
+    --ink:#14202b;
+    --muted:#667085;
+    --line:#dfe7ee;
+    --bg:#f5f8fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.5;
+  }
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1380px;margin:auto;padding:0 24px}
+  header{
+    background:linear-gradient(120deg,#071c2e,#0b3555 58%,#0b6f73);
+    color:white;
+    padding:56px 0 42px;
+    position:relative;
+    overflow:hidden;
+  }
+  header:after{
+    content:"";
+    position:absolute;
+    width:420px;height:420px;border-radius:50%;
+    background:rgba(255,255,255,.05);
+    right:-120px;top:-180px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:36px;align-items:center;position:relative;z-index:1}
+  .eyebrow{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7de3df;font-size:13px}
+  h1{font-size:48px;line-height:1.05;margin:10px 0 18px;max-width:900px}
+  .lead{font-size:19px;color:#dce8ef;max-width:900px}
+  .hero-card{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:22px;
+    padding:24px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-metric{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+  .metric{
+    padding:16px;
+    border-radius:16px;
+    background:rgba(255,255,255,.09);
+  }
+  .metric strong{font-size:30px;display:block}
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(8px);
+  }
+  nav .wrap{display:flex;gap:8px;overflow:auto;padding-top:10px;padding-bottom:10px}
+  nav a{
+    white-space:nowrap;
+    padding:9px 13px;
+    border-radius:999px;
+    color:#344054;
+    font-size:14px;font-weight:700;
+  }
+  nav a:hover{background:#edf4ff;color:#174ea6}
+  main{padding:34px 0 70px}
+  section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:24px;
+    box-shadow:0 6px 24px rgba(16,24,40,.04);
+  }
+  h2{font-size:30px;margin:0 0 8px;color:var(--navy)}
+  h3{font-size:20px;margin:0 0 10px;color:var(--navy)}
+  .section-intro{color:var(--muted);margin:0 0 24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .stat{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:20px;
+    background:linear-gradient(180deg,#fff,#fbfdff);
+  }
+  .stat .label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+  .stat .value{font-size:32px;font-weight:900;margin-top:4px;color:var(--navy)}
+  .stat .sub{font-size:13px;color:var(--muted);margin-top:3px}
+  table{width:100%;border-collapse:collapse;margin-top:12px}
+  th,td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left}
+  th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:#475467;background:#f8fafc}
+  tr:last-child td{border-bottom:none}
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800
+  }
+  .p-green{background:#ecfdf3;color:#027a48}
+  .p-yellow{background:#fffaeb;color:#b54708}
+  .p-red{background:#fef3f2;color:#b42318}
+  .p-blue{background:#eff6ff;color:#1d4ed8}
+  .card{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+    background:white;
+  }
+  .card .icon{font-size:25px;margin-bottom:8px}
+  .card p{margin:0;color:var(--muted)}
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+  .phase{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .phase:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+  .phase:nth-child(2):before{background:var(--teal)}
+  .phase:nth-child(3):before{background:var(--amber)}
+  .phase:nth-child(4):before{background:var(--green)}
+  .phase b{display:block;margin-bottom:6px}
+  .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px}
+  .check{
+    display:flex;gap:10px;align-items:flex-start;
+    border-bottom:1px dashed var(--line);padding:9px 0;
+  }
+  .check span:first-child{font-weight:900;color:var(--teal)}
+  .risk{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:14px;
+    align-items:start;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:10px;
+  }
+  .risk strong{color:var(--navy)}
+  .money{
+    background:linear-gradient(135deg,#071c2e,#113e62);
+    color:white;
+    border:none;
+  }
+  .money h2,.money h3{color:white}
+  .money .section-intro{color:#d7e3eb}
+  .pricebox{
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:18px;
+    padding:20px;
+  }
+  .pricebig{font-size:38px;font-weight:900}
+  .note{
+    background:#f0f9ff;border-left:4px solid var(--blue);
+    padding:15px 16px;border-radius:12px;color:#344054;
+  }
+  .warning{
+    background:#fff7ed;border-left:4px solid var(--amber);
+    padding:15px 16px;border-radius:12px;color:#7c2d12;
+  }
+  footer{color:#667085;text-align:center;padding:0 20px 40px;font-size:13px}
+  .topline{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+  .brand{font-size:28px;font-weight:950;letter-spacing:-.05em}
+  .brand em{font-style:normal;color:#35c9c2}
+  @media(max-width:980px){
+    .hero-grid,.grid-4,.grid-3,.grid-2,.timeline{grid-template-columns:1fr 1fr}
+    h1{font-size:38px}
+    .checklist{grid-template-columns:1fr}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 14px}
+    header{padding:38px 0 28px}
+    .hero-grid,.grid-4,.grid-3,.grid-2,.timeline{grid-template-columns:1fr}
+    h1{font-size:32px}
+    section{padding:21px}
+    .hero-metric{grid-template-columns:1fr 1fr}
+    .risk{grid-template-columns:1fr}
+    th,td{padding:10px 8px;font-size:13px}
+  }
+  @media print{
+    nav{display:none}
+    body{background:white}
+    section{box-shadow:none;break-inside:avoid}
+    header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="topline">
+        <div class="eyebrow">Avaliação estratégica do projeto</div>
+        <div class="brand">AM<em>2</em></div>
+      </div>
+      <h1>Plataforma Corporativa de Telerradiologia — Projeto Telemedi</h1>
+      <p class="lead">Visão consolidada para reunião: escopo conhecido, desenvolvimentos necessários, estratégia de migração, riscos, integrações, responsabilidades e projeção financeira.</p>
+    </div>
+    <div class="hero-card">
+      <strong>Resumo da operação atual</strong>
+      <div class="hero-metric">
+        <div class="metric"><strong>40</strong><span>clientes atuais</span></div>
+        <div class="metric"><strong>20.747</strong><span>exames/mês</span></div>
+        <div class="metric"><strong>~15</strong><span>integrações</span></div>
+        <div class="metric"><strong>~R$ 18 mil</strong><span>custo atual/mês</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#cenario">Cenário</a>
+    <a href="#escopo">Escopo AM2</a>
+    <a href="#desenvolvimentos">Desenvolvimentos</a>
+    <a href="#integracoes">Integrações</a>
+    <a href="#migracao">Migração</a>
+    <a href="#riscos">Riscos</a>
+    <a href="#financeiro">Financeiro</a>
+    <a href="#reuniao">Checklist reunião</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="cenario">
+  <h2>1. Cenário atual mapeado</h2>
+  <p class="section-intro">Base atual informada pela Telemedi e utilizada para dimensionar o projeto.</p>
+
+  <div class="grid-4">
+    <div class="stat"><div class="label">Clientes</div><div class="value">~40</div><div class="sub">migração progressiva</div></div>
+    <div class="stat"><div class="label">Exames/mês</div><div class="value">20.747</div><div class="sub">volume atual aproximado</div></div>
+    <div class="stat"><div class="label">Alta complexidade</div><div class="value">14.302</div><div class="sub">TC + RM + Mamografia</div></div>
+    <div class="stat"><div class="label">Baixa complexidade</div><div class="value">6.445</div><div class="sub">RX + Densitometria/Outros</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Modalidade</th><th>Volume/mês</th><th>Classificação</th></tr></thead>
+    <tbody>
+      <tr><td>Raio-X</td><td>6.442</td><td><span class="pill p-blue">Baixa</span></td></tr>
+      <tr><td>Tomografia</td><td>12.292</td><td><span class="pill p-red">Alta</span></td></tr>
+      <tr><td>Mamografia</td><td>678</td><td><span class="pill p-red">Alta</span></td></tr>
+      <tr><td>Ressonância</td><td>1.332</td><td><span class="pill p-red">Alta</span></td></tr>
+      <tr><td>Densitometria/Outros</td><td>3</td><td><span class="pill p-blue">Baixa</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-3" style="margin-top:18px">
+    <div class="card"><div class="icon">📈</div><h3>Crescimento</h3><p>~500 exames de TC/mês atualmente, com intenção de acelerar o crescimento comercial.</p></div>
+    <div class="card"><div class="icon">🧑‍💻</div><h3>Suporte N1</h3><p>Telemedi mantém equipe própria 24h e realiza o treinamento dos clientes.</p></div>
+    <div class="card"><div class="icon">⏱️</div><h3>SLA crítico</h3><p>AVC com prazo de até 15 minutos, além de urgência, prioritário e eletivo.</p></div>
+  </div>
+</section>
+
+<section id="escopo">
+  <h2>2. O que a AM2 deverá absorver</h2>
+  <p class="section-intro">O projeto envolve tecnologia, implantação, integrações, evolução do produto e sustentação da operação.</p>
+
+  <div class="grid-3">
+    <div class="card"><div class="icon">🏢</div><h3>Plataforma multiempresa</h3><p>Gestão centralizada de clientes, unidades, radiologistas, usuários, modalidades e permissões.</p></div>
+    <div class="card"><div class="icon">🔄</div><h3>Workflow ponta a ponta</h3><p>Recebimento, validação, distribuição, aceite, laudo, assinatura, entrega e confirmação.</p></div>
+    <div class="card"><div class="icon">🔌</div><h3>Integrações</h3><p>Entrada e saída com PACS, RIS, HIS, ERP e sistemas de terceiros.</p></div>
+    <div class="card"><div class="icon">🧩</div><h3>Customizações</h3><p>Regras por cliente, modalidade, prioridade, SLA, radiologista e unidade.</p></div>
+    <div class="card"><div class="icon">🛠️</div><h3>Implantações</h3><p>Novos clientes e migração progressiva dos clientes existentes.</p></div>
+    <div class="card"><div class="icon">🧭</div><h3>Suporte N2/N3</h3><p>Problemas técnicos de plataforma, integrações, DICOM, banco, infraestrutura e homologação.</p></div>
+  </div>
+</section>
+
+<section id="desenvolvimentos">
+  <h2>3. Desenvolvimentos mapeados</h2>
+  <p class="section-intro">Itens que precisam existir ou amadurecer para suportar a operação com escala.</p>
+
+  <div class="grid-2">
+    <div class="card"><h3>🧠 Motor de distribuição inteligente</h3><p>Cliente + modalidade + procedimento + especialidade + prioridade + escala + carga do radiologista.</p></div>
+    <div class="card"><h3>⏳ Controle de SLA</h3><p>Cronômetro, alertas antecipados, escalonamento, dashboard e relatórios por cliente/radiologista.</p></div>
+    <div class="card"><h3>💬 Chat vinculado ao exame</h3><p>Mensagens, anexos, áudio, dúvidas e histórico auditável entre suporte e radiologista.</p></div>
+    <div class="card"><h3>📝 Construtor de layouts</h3><p>Ferramenta para a própria Telemedi configurar logo, cabeçalho, rodapé, assinatura e identidade de cada cliente.</p></div>
+    <div class="card"><h3>🔀 Gerenciador De/Para</h3><p>Normalização dos códigos e nomes de procedimentos utilizados por diferentes clientes.</p></div>
+    <div class="card"><h3>♻️ Revisão e versionamento</h3><p>Laudo V1, revisão, V2, nova assinatura, reenvio e trilha completa de auditoria.</p></div>
+    <div class="card"><h3>🚦 Painel de integrações</h3><p>Status entregue, pendente, erro, retry automático e reprocessamento manual.</p></div>
+    <div class="card"><h3>📊 Dashboards operacionais</h3><p>Volume, TAT, SLA, produtividade, filas, exames críticos, falhas e desempenho por cliente.</p></div>
+  </div>
+</section>
+
+<section id="integracoes">
+  <h2>4. Integrações — maior ponto técnico de atenção</h2>
+  <p class="section-intro">Hoje há estimativa de aproximadamente 15 integrações, mas o levantamento detalhado ainda precisa ser concluído.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>Entrada</h3><p>Pedido via ERP/RIS/HIS e imagens via DICOM/PACS/modalidade.</p></div>
+    <div class="card"><h3>Processamento</h3><p>Identificação do cliente, paciente, procedimento, prioridade e associação ao estudo.</p></div>
+    <div class="card"><h3>Saída</h3><p>Retorno do laudo, PDF, status e dados estruturados para o sistema do cliente.</p></div>
+  </div>
+
+  <div class="warning" style="margin-top:18px">
+    <strong>Regra sugerida:</strong> integrações incluídas quando existir documentação adequada por API REST, HL7, DICOM ou padrão compatível. Custos eventualmente cobrados por fornecedores terceiros permanecem de responsabilidade da Telemedi/cliente.
+  </div>
+
+  <table>
+    <thead><tr><th>Item a levantar por integração</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Sistema / fabricante / versão</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Documentação API / HL7 / DICOM</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Forma de entrada do pedido</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Forma de retorno do laudo</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Autenticação / segurança</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Ambiente de homologação</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+      <tr><td>Contato técnico do terceiro</td><td><span class="pill p-yellow">Pendente</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="migracao">
+  <h2>5. Estratégia de implantação e migração</h2>
+  <p class="section-intro">Evitar uma virada única dos 40 clientes. O objetivo é validar a plataforma enquanto a operação atual permanece estável.</p>
+
+  <div class="timeline">
+    <div class="phase"><b>Fase 1 — Novos clientes</b><span>Todos os novos clientes entram diretamente na AM2.</span></div>
+    <div class="phase"><b>Fase 2 — Homologação</b><span>Desenvolvimento e validação de integrações, layouts, workflows e SLA.</span></div>
+    <div class="phase"><b>Fase 3 — Pilotos</b><span>Migrar 2 a 3 clientes atuais, incluindo cenários simples e complexos.</span></div>
+    <div class="phase"><b>Fase 4 — Migração progressiva</b><span>Lotes de 5, 10 e demais clientes conforme estabilidade.</span></div>
+  </div>
+
+  <div class="note" style="margin-top:18px">
+    <strong>Vantagem:</strong> reduz risco para as duas empresas, evita 40 implantações simultâneas e permite transformar cada necessidade recorrente em funcionalidade configurável da plataforma.
+  </div>
+</section>
+
+<section>
+  <h2>6. Acervo, armazenamento e propriedade das imagens</h2>
+  <p class="section-intro">Um dos principais diferenciais comerciais do projeto.</p>
+
+  <div class="grid-3">
+    <div class="card"><h3>☁️ Armazenamento AM2</h3><p>Imagens online pelo período contratado na infraestrutura AM2.</p></div>
+    <div class="card"><h3>🗄️ Storage DICOM dedicado</h3><p>Disponibilização de servidor/storage para a Telemedi manter seu próprio acervo.</p></div>
+    <div class="card"><h3>🔁 Sincronização</h3><p>Cópia automática dos exames para a infraestrutura sob controle da Telemedi.</p></div>
+  </div>
+
+  <div class="note" style="margin-top:18px">
+    <strong>Diferencial:</strong> a Telemedi permanece com posse e controle do acervo de imagens, reduzindo dependência tecnológica do fornecedor e facilitando contingência e futuras migrações.
+  </div>
+</section>
+
+<section id="riscos">
+  <h2>7. Riscos do projeto</h2>
+  <p class="section-intro">Riscos para AM2 e Telemedi que precisam ser administrados desde o contrato e o planejamento técnico.</p>
+
+  <h3 style="margin-top:20px">Riscos para a AM2</h3>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>Escopo infinito</strong><br>“Integrações incluídas” virar desenvolvimento ilimitado ou customizações exclusivas por cliente.</div></div>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>15 integrações virarem 30 ou 40</strong><br>Crescimento da Telemedi aumenta continuamente o esforço de desenvolvimento e homologação.</div></div>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>Layouts e regras manuais</strong><br>Se não criarmos ferramentas parametrizáveis, a equipe AM2 vira dependência operacional.</div></div>
+  <div class="risk"><span class="pill p-yellow">MÉDIO</span><div><strong>Suporte N1 chegar à AM2</strong><br>Mesmo havendo equipe Telemedi 24h, dúvidas operacionais podem ser escaladas indevidamente.</div></div>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>SLA de AVC</strong><br>A plataforma precisa controlar o SLA sem assumir responsabilidade pelo tempo médico de emissão do laudo.</div></div>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>Legado desconhecido</strong><br>Não sabemos quantidade de TB, formato ou condições que o fornecedor atual oferecerá para exportação.</div></div>
+
+  <h3 style="margin-top:26px">Riscos para a Telemedi</h3>
+  <div class="risk"><span class="pill p-yellow">MÉDIO</span><div><strong>Período com dois fornecedores</strong><br>Até a migração completa, haverá sobreposição temporária de custos.</div></div>
+  <div class="risk"><span class="pill p-yellow">MÉDIO</span><div><strong>Homologações de terceiros</strong><br>APIs, integrações e fornecedores externos podem atrasar a migração.</div></div>
+  <div class="risk"><span class="pill p-red">ALTO</span><div><strong>Acesso ao legado</strong><br>Fornecedor atual pode dificultar ou demorar para liberar os estudos históricos.</div></div>
+  <div class="risk"><span class="pill p-yellow">MÉDIO</span><div><strong>Mudança de workflow</strong><br>Radiologistas, suporte e clientes precisarão se adaptar à nova operação.</div></div>
+</section>
+
+<section id="financeiro" class="money">
+  <h2>8. Modelo financeiro estudado</h2>
+  <p class="section-intro">Cobrança por consumo, abaixo da referência da Animati, com licenciamento da plataforma após a fase de transição.</p>
+
+  <div class="grid-3">
+    <div class="pricebox">
+      <div style="opacity:.8">Alta complexidade</div>
+      <div class="pricebig">R$ 0,79</div>
+      <div>faixa 10.001–25.000</div>
+    </div>
+    <div class="pricebox">
+      <div style="opacity:.8">Baixa complexidade</div>
+      <div class="pricebig">R$ 0,55</div>
+      <div>faixa 10.001–25.000</div>
+    </div>
+    <div class="pricebox">
+      <div style="opacity:.8">Licenciamento</div>
+      <div class="pricebig">R$ 1.200</div>
+      <div>após fase de transição</div>
+    </div>
+  </div>
+
+  <table style="margin-top:22px;color:white">
+    <thead><tr><th style="background:rgba(255,255,255,.08);color:white">Componente</th><th style="background:rgba(255,255,255,.08);color:white">Cálculo</th><th style="background:rgba(255,255,255,.08);color:white">Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Alta complexidade</td><td>14.302 × R$ 0,79</td><td>R$ 11.298,58</td></tr>
+      <tr><td>Baixa complexidade</td><td>6.445 × R$ 0,55</td><td>R$ 3.544,75</td></tr>
+      <tr><td>Licenciamento</td><td>fixo</td><td>R$ 1.200,00</td></tr>
+      <tr><td><strong>Total projetado</strong></td><td></td><td><strong>R$ 16.043,33/mês</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-2" style="margin-top:18px">
+    <div class="pricebox"><strong>Custo atual informado</strong><div class="pricebig">~R$ 18 mil</div></div>
+    <div class="pricebox"><strong>Economia projetada</strong><div class="pricebig">~R$ 1.957/mês</div><div>~R$ 23.480/ano</div></div>
+  </div>
+
+  <p style="margin-top:18px;color:#d7e3eb"><strong>Durante a transição:</strong> sugestão de faturar apenas os exames efetivamente processados pela AM2, sem cobrança do licenciamento de R$ 1.200 enquanto a Telemedi ainda mantiver a operação atual no fornecedor anterior.</p>
+</section>
+
+<section id="reuniao">
+  <h2>9. Checklist para a reunião</h2>
+  <p class="section-intro">O objetivo não é sair com uma data para migrar os 40 clientes, e sim reduzir as incógnitas e definir o MVP.</p>
+
+  <div class="checklist">
+    <div class="check"><span>✓</span><div>Relação nominal dos 40 clientes atuais.</div></div>
+    <div class="check"><span>✓</span><div>Levantamento exato das ~15 integrações.</div></div>
+    <div class="check"><span>✓</span><div>PACS/RIS/ERP e versão utilizada por cada cliente.</div></div>
+    <div class="check"><span>✓</span><div>Documentação API / HL7 / DICOM disponível.</div></div>
+    <div class="check"><span>✓</span><div>Como cada sistema envia pedidos e recebe laudos.</div></div>
+    <div class="check"><span>✓</span><div>Quantidade de layouts de laudo existentes.</div></div>
+    <div class="check"><span>✓</span><div>Regras atuais de distribuição de exames.</div></div>
+    <div class="check"><span>✓</span><div>Escala e especialidades dos radiologistas.</div></div>
+    <div class="check"><span>✓</span><div>Fluxo de revisão/correção de laudo.</div></div>
+    <div class="check"><span>✓</span><div>Fluxo atual de comunicação suporte ↔ radiologista.</div></div>
+    <div class="check"><span>✓</span><div>Relatórios e dashboards indispensáveis.</div></div>
+    <div class="check"><span>✓</span><div>Formato desejado para o acervo próprio da Telemedi.</div></div>
+    <div class="check"><span>✓</span><div>Condições de exportação do legado do fornecedor atual.</div></div>
+    <div class="check"><span>✓</span><div>Escolha dos primeiros clientes piloto.</div></div>
+    <div class="check"><span>✓</span><div>Confirmação de que novos clientes podem entrar direto na AM2.</div></div>
+    <div class="check"><span>✓</span><div>Definir responsável técnico do projeto em cada empresa.</div></div>
+  </div>
+
+  <div class="note" style="margin-top:20px">
+    <strong>Resultado ideal da reunião:</strong> aprovar a estratégia “novos clientes → homologação → pilotos → migração progressiva”, obter o inventário de integrações e definir exatamente o MVP necessário para colocar o primeiro cliente novo em produção.
+  </div>
+</section>
+
+<section>
+  <h2>10. Princípio estratégico do projeto</h2>
+  <p class="section-intro">A regra que deve orientar todas as decisões de desenvolvimento.</p>
+  <div class="card" style="border:2px solid #b7e4df;background:#f3fffd">
+    <h3 style="font-size:25px">Cada necessidade recorrente deve virar uma funcionalidade configurável — não uma customização exclusiva.</h3>
+    <p>Se fizermos isso, o esforço inicial da Telemedi se transforma na base de uma nova plataforma AM2 de telerradiologia que poderá atender futuras operações com 10, 50 ou 100 clientes sem repetir todo o desenvolvimento.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  AM2 Soluções — Documento interno de avaliação do projeto de Telerradiologia
+</footer>
+
+</body>
+</html>
