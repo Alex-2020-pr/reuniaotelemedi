@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AM2 + Telemedi | Planejamento, Migração e Nova Plataforma para Telerradiologia</title>
+<style>
+:root{--navy:#08283e;--navy2:#0d3d5d;--teal:#0ea5a6;--blue:#2563eb;--green:#159447;--amber:#d97706;--red:#c73535;--bg:#f4f7fa;--line:#dce5ec;--text:#17212b;--muted:#667085}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1260px;margin:auto;padding:0 24px}
+header{background:radial-gradient(circle at 86% 0,rgba(14,165,166,.3),transparent 32%),linear-gradient(120deg,#061b2b,#0b3551 60%,#0b686c);color:white;padding:58px 0 50px}
+.brand{font-size:30px;font-weight:950;letter-spacing:-.04em}.brand span{color:#75e7e0}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:850;color:#8be9e4;margin-top:13px}
+h1{font-size:45px;line-height:1.08;letter-spacing:-.025em;margin:10px 0 16px;max-width:900px}
+.lead{font-size:19px;color:#dce9ef;max-width:940px;margin:0}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow:auto;padding-top:9px;padding-bottom:9px}
+nav a{text-decoration:none;color:#344054;font-size:13px;font-weight:750;padding:8px 11px;border-radius:99px;white-space:nowrap}
+nav a:hover{background:#eaf8f7;color:#087c7c}
+main{padding:30px 0 70px}
+section{background:#fff;border:1px solid var(--line);border-radius:21px;padding:29px;margin-bottom:22px;box-shadow:0 6px 22px rgba(16,24,40,.04)}
+h2{font-size:29px;color:var(--navy);margin:0 0 7px;line-height:1.2}h3{font-size:19px;color:var(--navy);margin:0 0 8px}
+.intro{color:var(--muted);margin:0 0 22px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.card{border:1px solid var(--line);border-radius:17px;padding:18px;background:linear-gradient(180deg,#fff,#fbfdff)}
+.card p{margin:0;color:var(--muted)}.ico{font-size:26px;margin-bottom:8px}
+.callout{border-left:4px solid var(--teal);background:#effcfb;border-radius:11px;padding:16px 17px;color:#31525b}
+.warn{border-left-color:var(--amber);background:#fff8ed;color:#75400b}.critical{border-left-color:var(--red);background:#fff5f5;color:#6d2a2a}
+.check{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}.check:last-child{border:0}.check b{color:var(--green)}
+table{width:100%;border-collapse:collapse}th,td{padding:13px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f8fafc;color:#475467;text-transform:uppercase;font-size:12px;letter-spacing:.04em}tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:850}.p-red{background:#fef2f2;color:#b91c1c}.p-amber{background:#fff7ed;color:#b45309}.p-green{background:#ecfdf3;color:#047857}.p-blue{background:#eff6ff;color:#1d4ed8}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.step{border:1px solid var(--line);border-radius:17px;padding:18px;position:relative;overflow:hidden}.step:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--teal)}.step:nth-child(2):before{background:var(--blue)}.step:nth-child(3):before{background:var(--green)}
+.partner{background:linear-gradient(135deg,#effcfb,#f6fbff);border:2px solid #b9e9e5}
+.split{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin:18px 0}.splitbox{padding:25px;border-radius:18px;text-align:center}.am2{background:#e9f6ff}.tele{background:#edfcf7}.pct{font-size:50px;font-weight:950;color:var(--navy);line-height:1}.lbl{font-weight:850;color:var(--navy);margin-bottom:7px}
+.question{display:flex;gap:9px;padding:8px 0;border-bottom:1px dashed var(--line)}.question:last-child{border:0}.question b{color:var(--teal);min-width:26px}
+footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
+@media(max-width:900px){.grid4,.grid3,.grid2,.flow,.split{grid-template-columns:1fr 1fr}h1{font-size:37px}}
+@media(max-width:650px){.wrap{padding:0 13px}.grid4,.grid3,.grid2,.flow,.split{grid-template-columns:1fr}h1{font-size:31px}section{padding:20px}th,td{font-size:12px;padding:9px 7px}}
+@media print{nav{display:none}body{background:#fff}section{box-shadow:none;break-inside:avoid}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+
+<style>
+.qtoolbar{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  margin:0 0 18px;padding:14px;border:1px solid var(--line);
+  border-radius:16px;background:#f8fbfd
+}
+.qbtn{
+  border:0;border-radius:10px;padding:10px 14px;font-weight:800;
+  cursor:pointer;font-size:13px;background:var(--navy);color:white
+}
+.qbtn.secondary{background:var(--teal)}
+.qbtn.light{background:#eef4f8;color:var(--navy);border:1px solid var(--line)}
+.qprogress{margin-left:auto;min-width:240px}
+.qbar{height:9px;background:#e6edf2;border-radius:99px;overflow:hidden;margin-top:5px}
+.qbar > div{height:100%;width:0;background:var(--teal);transition:.2s}
+.qgroup{margin-top:18px}
+.qitem{
+  border:1px solid var(--line);border-radius:15px;padding:15px;margin-bottom:12px;
+  background:#fff
+}
+.qhead{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.qnum{
+  flex:0 0 auto;width:31px;height:31px;border-radius:50%;
+  display:grid;place-items:center;background:#e9f7f6;color:#087c7c;font-weight:900
+}
+.qtext{font-weight:760;color:var(--navy);padding-top:4px}
+.qfields{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:9px}
+.qfields textarea,.qfields input,.qfields select{
+  width:100%;border:1px solid #cfdbe4;border-radius:9px;padding:9px;
+  font:inherit;background:white;color:var(--text)
+}
+.qfields textarea{min-height:72px;resize:vertical}
+.qfields label{display:block;font-size:11px;font-weight:800;color:#667085;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.qsave{font-size:12px;color:#667085;margin-top:8px}
+@media(max-width:850px){.qfields{grid-template-columns:1fr 1fr}.qprogress{margin-left:0;width:100%}}
+@media(max-width:580px){.qfields{grid-template-columns:1fr}}
+@media print{
+  .qtoolbar,nav,header,.no-print{display:none!important}
+  body{background:white}
+  main{padding:0}
+  section{border:0;box-shadow:none;margin:0;padding:0}
+  main > section:not(#perguntas){display:none!important}
+  #perguntas{display:block!important}
+  .qitem{break-inside:avoid;border:1px solid #bbb;margin-bottom:10px}
+  .qfields{grid-template-columns:1fr 1fr 1fr 1fr}
+  .qfields textarea,.qfields input,.qfields select{
+    border:1px solid #999;background:white!important;color:black!important
+  }
+  .qsave{display:none}
+}
+</style>
+
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="brand">AM<span>2</span> + TELEMEDI</div>
+<div class="eyebrow">Planejamento conjunto de implantação e evolução da plataforma</div>
+<h1>Preparação da Nova Plataforma de Telerradiologia</h1>
+<p class="lead">Documento para alinhamento dos pontos de atenção, requisitos, responsabilidades e estratégia de preparação antes da migração integral da operação.</p>
+</div>
+</header>
+
+<nav><div class="wrap">
+<a href="#objetivo">Objetivo</a><a href="#estrategia">Estratégia</a><a href="#escopo">Preparação</a><a href="#atencao">Pontos de atenção</a><a href="#integracoes">Integrações</a><a href="#virada">Virada</a><a href="#perguntas">Perguntas</a><a href="#nova-plataforma">Nova Plataforma Tele</a><a href="#responsabilidades">Responsabilidades</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="objetivo">
+<h2>1. Objetivo do projeto</h2>
+<p class="intro">Preparar e homologar previamente todos os recursos necessários para que, no momento definido em conjunto para a migração, toda a operação possa ser transferida para a nova plataforma de forma coordenada.</p>
+<div class="grid4">
+<div class="card"><div class="ico">🧩</div><h3>Preparar</h3><p>Desenvolver e configurar previamente integrações, workflows, layouts e regras operacionais.</p></div>
+<div class="card"><div class="ico">🧪</div><h3>Homologar</h3><p>Validar os fluxos técnicos e operacionais antes da data definitiva de migração.</p></div>
+<div class="card"><div class="ico">🔄</div><h3>Migrar em conjunto</h3><p>Quando a decisão de virada for tomada, migrar a operação integralmente para evitar uso simultâneo de duas plataformas pelos médicos.</p></div>
+<div class="card"><div class="ico">📈</div><h3>Evoluir</h3><p>Construir uma plataforma parametrizável que acompanhe o crescimento da operação e novos clientes.</p></div>
+</div>
+</section>
+
+<section id="estrategia">
+<h2>2. Estratégia proposta</h2>
+<p class="intro">Não se propõe uma migração parcial dos médicos. O período anterior à virada será utilizado para planejamento, desenvolvimento, configuração, testes e homologação.</p>
+<div class="flow">
+<div class="step"><h3>Fase 1 — Planejamento e desenvolvimento</h3><p>Levantamento completo da operação e construção dos recursos necessários, sem alterar a plataforma utilizada pelos radiologistas.</p></div>
+<div class="step"><h3>Fase 2 — Homologação e preparação</h3><p>Testes das integrações, clientes, laudos, SLAs, distribuição, retorno de resultados, infraestrutura e contingência.</p></div>
+<div class="step"><h3>Fase 3 — Virada integral</h3><p>Após aprovação conjunta e definição da data, migração coordenada de toda a operação para a nova plataforma.</p></div>
+</div>
+<div class="callout" style="margin-top:18px"><strong>Princípio do projeto:</strong> desenvolver e testar antes; migrar somente quando os requisitos críticos estiverem homologados. Dessa forma, os radiologistas continuam utilizando uma única plataforma durante toda a operação.</div>
+</section>
+
+<section id="escopo">
+<h2>3. Preparações e desenvolvimentos mapeados</h2>
+<p class="intro">Itens identificados até o momento como relevantes para a preparação da nova operação.</p>
+<div class="grid3">
+<div class="card"><h3>🔌 Integrações</h3><p>Integração com PACS, RIS, HIS e ERP utilizados pelos clientes.</p></div>
+<div class="card"><h3>📝 Layouts de laudo</h3><p>Parametrização de layouts, logos, cabeçalhos, rodapés e modelos por cliente.</p></div>
+<div class="card"><h3>🔀 De/Para</h3><p>Normalização de procedimentos, códigos, modalidades e identificadores entre sistemas.</p></div>
+<div class="card"><h3>⏱️ SLA e prioridades</h3><p>Regras para eletivos, prioritários, urgências e AVC, com alertas e acompanhamento.</p></div>
+<div class="card"><h3>🧑‍⚕️ Distribuição</h3><p>Regras por cliente, modalidade, especialidade, prioridade, escala e radiologista.</p></div>
+<div class="card"><h3>💬 Comunicação</h3><p>Comunicação vinculada ao exame entre suporte, operação e radiologistas.</p></div>
+<div class="card"><h3>🚦 Monitoramento</h3><p>Status de integrações, falhas, reprocessamento, filas e rastreabilidade.</p></div>
+<div class="card"><h3>📊 Gestão</h3><p>Dashboards de volume, TAT, SLA, produtividade, pendências e indicadores.</p></div>
+<div class="card"><h3>🗄️ Acervo</h3><p>Estratégia para sincronização e manutenção de cópia das imagens em infraestrutura definida para a Telemedi.</p></div>
+</div>
+</section>
+
+<section id="atencao">
+<h2>4. Pontos de atenção</h2>
+<p class="intro">O objetivo destes pontos não é limitar o projeto, mas identificar antecipadamente dependências que precisam ser resolvidas para uma virada segura.</p>
+<table>
+<thead><tr><th>Tema</th><th>Nível</th><th>Ponto a validar</th></tr></thead>
+<tbody>
+<tr><td>Base de clientes</td><td><span class="pill p-red">CRÍTICO</span></td><td>Inventário definitivo dos clientes, sistemas, modalidades, volumes, layouts e particularidades.</td></tr>
+<tr><td>Integrações existentes</td><td><span class="pill p-red">CRÍTICO</span></td><td>Identificação completa das integrações e documentação técnica necessária.</td></tr>
+<tr><td>Homologação</td><td><span class="pill p-red">CRÍTICO</span></td><td>Cada fluxo deverá ser testado ponta a ponta antes da virada.</td></tr>
+<tr><td>Layouts de laudo</td><td><span class="pill p-amber">ATENÇÃO</span></td><td>Levantar variações por cliente, modalidade e unidade e priorizar ferramenta parametrizável.</td></tr>
+<tr><td>Regras operacionais</td><td><span class="pill p-amber">ATENÇÃO</span></td><td>Mapear distribuição, escalas, especialidades, prioridades e exceções.</td></tr>
+<tr><td>SLA crítico</td><td><span class="pill p-red">CRÍTICO</span></td><td>Garantir alertas, escalonamento, contingência e visibilidade para exames de alta prioridade.</td></tr>
+<tr><td>Legado histórico</td><td><span class="pill p-blue">PLANEJAR</span></td><td>Tratar separadamente da virada operacional após conhecer volume, formato e condições de entrega do fornecedor atual.</td></tr>
+<tr><td>Suporte</td><td><span class="pill p-green">ALINHAR</span></td><td>Definir claramente N1 Telemedi e N2/N3 AM2, canais, responsáveis e escalonamento.</td></tr>
+<tr><td>Contingência</td><td><span class="pill p-red">CRÍTICO</span></td><td>Plano para indisponibilidade, falha de integração, fila, retry e situações críticas durante e após a virada.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="integracoes">
+<h2>5. Integrações com terceiros</h2>
+<p class="intro">As integrações são parte importante da parceria e devem ser preparadas antes da migração.</p>
+<div class="grid3">
+<div class="card"><h3>Entrada</h3><p>Pedidos, dados clínicos, pacientes e exames através de DICOM, API REST, HL7 ou outros padrões compatíveis.</p></div>
+<div class="card"><h3>Processamento</h3><p>Identificação do cliente, procedimento, prioridade, regras de distribuição e acompanhamento do estudo.</p></div>
+<div class="card"><h3>Retorno</h3><p>Devolução do laudo, PDF, status e/ou informações estruturadas para o sistema de origem.</p></div>
+</div>
+<div class="callout warn" style="margin-top:18px"><strong>Dependência externa:</strong> para integrações com sistemas de terceiros, será necessária documentação técnica adequada, acesso a ambiente de homologação quando aplicável e participação do fornecedor terceiro. Eventuais cobranças ou restrições impostas por esses fornecedores deverão ser tratadas diretamente com o respectivo cliente/fornecedor.</div>
+</section>
+
+<section id="virada">
+<h2>6. Critérios sugeridos para autorizar a virada</h2>
+<p class="intro">A data de migração integral deve ser definida somente após a validação conjunta dos itens críticos.</p>
+<div class="grid2">
+<div class="card">
+<div class="check"><b>✓</b><span>Clientes e ambientes cadastrados e conferidos.</span></div>
+<div class="check"><b>✓</b><span>Integrações críticas homologadas ponta a ponta.</span></div>
+<div class="check"><b>✓</b><span>Layouts e modelos necessários disponíveis.</span></div>
+<div class="check"><b>✓</b><span>Usuários, radiologistas, permissões e escalas configurados.</span></div>
+</div>
+<div class="card">
+<div class="check"><b>✓</b><span>Regras de SLA, prioridades e distribuição testadas.</span></div>
+<div class="check"><b>✓</b><span>Fluxo de retorno de laudos validado.</span></div>
+<div class="check"><b>✓</b><span>Suporte N1/N2/N3 e escalonamento definidos.</span></div>
+<div class="check"><b>✓</b><span>Plano de contingência e acompanhamento da virada aprovado.</span></div>
+</div>
+</section>
+
+<section id="perguntas">
+<h2>7. Levantamento técnico e operacional</h2>
+<p class="intro">Questionário interativo para preenchimento conjunto. As respostas ficam salvas neste navegador e podem ser impressas ou exportadas em formato Excel.</p>
+<div class="qtoolbar">
+  <button class="qbtn secondary" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+  <button class="qbtn" onclick="exportarXLS()">📊 Exportar Excel (.xls)</button>
+  <button class="qbtn light" onclick="exportarCSV()">⬇️ Exportar CSV</button>
+  <button class="qbtn light" onclick="limparRespostas()">🧹 Limpar respostas</button>
+  <div class="qprogress">
+    <strong id="progressText">0 de 0 respondidas</strong>
+    <div class="qbar"><div id="progressBar"></div></div>
+  </div>
+</div>
+<div class="callout no-print" style="margin-bottom:18px"><strong>Como usar:</strong> preencha as respostas durante ou após a reunião. O navegador salva automaticamente. Para compartilhar, utilize “Exportar Excel” ou “Imprimir / Salvar em PDF”.</div>
+
+<div class="qgroup"><h3>Clientes e sistemas</h3>
+
+<div class="qitem" data-qid="1" data-category="Clientes e sistemas">
+  <div class="qhead">
+    <div class="qnum">01</div>
+    <div class="qtext">Qual a relação definitiva dos clientes e o volume aproximado por cliente?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="2" data-category="Clientes e sistemas">
+  <div class="qhead">
+    <div class="qnum">02</div>
+    <div class="qtext">Qual PACS, RIS, HIS ou ERP cada cliente utiliza?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="3" data-category="Clientes e sistemas">
+  <div class="qhead">
+    <div class="qnum">03</div>
+    <div class="qtext">Qual a versão de cada sistema em produção?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="4" data-category="Clientes e sistemas">
+  <div class="qhead">
+    <div class="qnum">04</div>
+    <div class="qtext">Quais integrações existem atualmente e quais são indispensáveis para a virada?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="5" data-category="Clientes e sistemas">
+  <div class="qhead">
+    <div class="qnum">05</div>
+    <div class="qtext">Há clientes com mais de um sistema integrado simultaneamente?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Integrações e interoperabilidade</h3>
+
+<div class="qitem" data-qid="6" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">06</div>
+    <div class="qtext">Há documentação técnica disponível para cada integração?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="7" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">07</div>
+    <div class="qtext">As integrações utilizam API REST, HL7, DICOM, DICOMweb ou outro padrão?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="8" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">08</div>
+    <div class="qtext">Como cada sistema envia pedidos, dados clínicos e informações do exame?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="9" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">09</div>
+    <div class="qtext">Como cada sistema recebe o laudo de volta: HL7, API, PDF, DICOM SR ou outro formato?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="10" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">10</div>
+    <div class="qtext">Existe ambiente de homologação e contato técnico do fornecedor para cada integração?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="11" data-category="Integrações e interoperabilidade">
+  <div class="qhead">
+    <div class="qnum">11</div>
+    <div class="qtext">Existem custos, licenças ou taxas cobradas pelos fornecedores terceiros para liberar integrações?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Laudos e workflow</h3>
+
+<div class="qitem" data-qid="12" data-category="Laudos e workflow">
+  <div class="qhead">
+    <div class="qnum">12</div>
+    <div class="qtext">Quantos layouts de laudo existem atualmente?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="13" data-category="Laudos e workflow">
+  <div class="qhead">
+    <div class="qnum">13</div>
+    <div class="qtext">Existem layouts diferentes por cliente, modalidade ou unidade?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="14" data-category="Laudos e workflow">
+  <div class="qhead">
+    <div class="qnum">14</div>
+    <div class="qtext">Quantos modelos/templates médicos precisam ser considerados?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="15" data-category="Laudos e workflow">
+  <div class="qhead">
+    <div class="qnum">15</div>
+    <div class="qtext">Como funciona atualmente a revisão, correção e versionamento de laudos?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="16" data-category="Laudos e workflow">
+  <div class="qhead">
+    <div class="qnum">16</div>
+    <div class="qtext">Quem administra hoje logos, cabeçalhos, rodapés, assinaturas e identidade visual?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Radiologistas, distribuição e SLA</h3>
+
+<div class="qitem" data-qid="17" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">17</div>
+    <div class="qtext">Como funciona atualmente a distribuição dos exames entre os radiologistas?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="18" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">18</div>
+    <div class="qtext">Existem regras por cliente, modalidade, especialidade, prioridade, escala ou carga de trabalho?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="19" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">19</div>
+    <div class="qtext">Como funciona a escala de radiologistas e quem pode laudar cada tipo de exame?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="20" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">20</div>
+    <div class="qtext">Como são determinadas e alteradas as prioridades dos exames?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="21" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">21</div>
+    <div class="qtext">Como é feito hoje o escalonamento quando um exame crítico se aproxima ou ultrapassa o SLA?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="22" data-category="Radiologistas, distribuição e SLA">
+  <div class="qhead">
+    <div class="qnum">22</div>
+    <div class="qtext">Quais funcionalidades são indispensáveis para garantir o SLA de AVC e demais prioridades?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Comunicação, operação e gestão</h3>
+
+<div class="qitem" data-qid="23" data-category="Comunicação, operação e gestão">
+  <div class="qhead">
+    <div class="qnum">23</div>
+    <div class="qtext">Como funciona hoje a comunicação entre suporte e radiologista?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="24" data-category="Comunicação, operação e gestão">
+  <div class="qhead">
+    <div class="qnum">24</div>
+    <div class="qtext">É necessário anexar pedido médico, PDFs, fotos ou outros documentos ao exame?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="25" data-category="Comunicação, operação e gestão">
+  <div class="qhead">
+    <div class="qnum">25</div>
+    <div class="qtext">Existem mensagens ou observações que precisam ficar vinculadas ao exame?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="26" data-category="Comunicação, operação e gestão">
+  <div class="qhead">
+    <div class="qnum">26</div>
+    <div class="qtext">Quais dashboards e relatórios são indispensáveis no go-live?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="27" data-category="Comunicação, operação e gestão">
+  <div class="qhead">
+    <div class="qnum">27</div>
+    <div class="qtext">Quais indicadores são acompanhados hoje: TAT, SLA, produtividade, volume, pendências, retrabalho?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Acervo, legado e infraestrutura</h3>
+
+<div class="qitem" data-qid="28" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">28</div>
+    <div class="qtext">Qual infraestrutura deverá receber a cópia própria das imagens?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="29" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">29</div>
+    <div class="qtext">O fornecedor atual já informou como disponibilizará o legado?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="30" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">30</div>
+    <div class="qtext">Existe estimativa de quantidade de TB e quantidade histórica de exames?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="31" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">31</div>
+    <div class="qtext">Quais dados históricos precisam estar disponíveis imediatamente após a virada?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="32" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">32</div>
+    <div class="qtext">É necessário manter todo o legado online ou poderá ser consultado/importado sob demanda?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="33" data-category="Acervo, legado e infraestrutura">
+  <div class="qhead">
+    <div class="qnum">33</div>
+    <div class="qtext">Qual formato é desejado para a cópia do acervo: Storage DICOM, PACS, object storage ou outro?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+<div class="qgroup"><h3>Governança, suporte e contingência</h3>
+
+<div class="qitem" data-qid="34" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">34</div>
+    <div class="qtext">Quem será o responsável técnico e o responsável operacional do projeto na Telemedi?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="35" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">35</div>
+    <div class="qtext">Quem aprovará as homologações e o aceite final da virada?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="36" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">36</div>
+    <div class="qtext">Quais atividades permanecerão definitivamente no suporte N1 da Telemedi?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="37" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">37</div>
+    <div class="qtext">Quais situações deverão ser escaladas para o suporte N2/N3 da AM2?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="38" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">38</div>
+    <div class="qtext">Qual será a frequência das reuniões de acompanhamento durante o projeto?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="39" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">39</div>
+    <div class="qtext">Quais cenários devem compor o plano de contingência da virada?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+
+<div class="qitem" data-qid="40" data-category="Governança, suporte e contingência">
+  <div class="qhead">
+    <div class="qnum">40</div>
+    <div class="qtext">Qual será o critério objetivo de Go/No-Go para autorizar a migração integral?</div>
+  </div>
+  <div class="qfields">
+    <div>
+      <label>Resposta / Informação</label>
+      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
+    </div>
+    <div>
+      <label>Responsável</label>
+      <input class="q-owner" type="text" placeholder="Nome / área">
+    </div>
+    <div>
+      <label>Status</label>
+      <select class="q-status">
+        <option value="Não respondido">Não respondido</option>
+        <option value="Em levantamento">Em levantamento</option>
+        <option value="Respondido">Respondido</option>
+        <option value="Depende de terceiro">Depende de terceiro</option>
+        <option value="Não se aplica">Não se aplica</option>
+      </select>
+    </div>
+    <div>
+      <label>Prazo / Observação</label>
+      <input class="q-note" type="text" placeholder="Prazo ou observação">
+    </div>
+  </div>
+  <div class="qsave">Salvamento automático neste navegador.</div>
+</div>
+</div>
+</section>
+
+<section id="nova-plataforma" class="partner">
+<h2>8. Nova Plataforma AM2 para Telerradiologia</h2>
+<p class="intro">Como parte deste projeto, a AM2 propõe desenvolver uma nova versão da plataforma especialmente direcionada às necessidades de empresas de telerradiologia, considerando a experiência operacional da Telemedi e os requisitos identificados durante o planejamento e a implantação.</p>
+
+<div class="grid3">
+<div class="card">
+<div class="ico">🧠</div>
+<h3>Construída para operações de Tele</h3>
+<p>A nova versão será estruturada para operações que atendem múltiplos clientes, unidades e radiologistas, com alto volume de exames e diferentes níveis de prioridade.</p>
+</div>
+<div class="card">
+<div class="ico">🤝</div>
+<h3>Desenvolvimento colaborativo</h3>
+<p>A experiência prática da Telemedi poderá contribuir com sugestões de fluxos, funcionalidades, indicadores e melhorias durante a evolução da nova plataforma.</p>
+</div>
+<div class="card">
+<div class="ico">🎁</div>
+<h3>Uso sem custo adicional</h3>
+<p>A Telemedi terá direito de utilizar esta nova versão específica para telerradiologia sem cobrança adicional pelo acesso às funcionalidades incorporadas à plataforma.</p>
+</div>
+</div>
+
+<h3 style="margin-top:24px">Funcionalidades previstas para a nova versão</h3>
+<div class="grid2">
+<div class="card">
+<div class="check"><b>✓</b><span>Gestão multiempresa e múltiplas unidades.</span></div>
+<div class="check"><b>✓</b><span>Central única de exames de todos os clientes.</span></div>
+<div class="check"><b>✓</b><span>Distribuição inteligente por modalidade, especialidade, prioridade, cliente e escala.</span></div>
+<div class="check"><b>✓</b><span>Controle de SLA e TAT com alertas e escalonamento.</span></div>
+<div class="check"><b>✓</b><span>Gestão de radiologistas, escalas e disponibilidade.</span></div>
+<div class="check"><b>✓</b><span>Chat e comunicação vinculados ao exame.</span></div>
+</div>
+<div class="card">
+<div class="check"><b>✓</b><span>Construtor e gerenciamento de layouts de laudo por cliente.</span></div>
+<div class="check"><b>✓</b><span>Gerenciamento de integrações, filas, erros e reprocessamentos.</span></div>
+<div class="check"><b>✓</b><span>Ferramenta de De/Para de procedimentos e códigos.</span></div>
+<div class="check"><b>✓</b><span>Dashboards operacionais e gerenciais.</span></div>
+<div class="check"><b>✓</b><span>Versionamento, revisão e rastreabilidade de laudos.</span></div>
+<div class="check"><b>✓</b><span>Novas funcionalidades definidas ao longo da evolução do produto.</span></div>
+</div>
+</div>
+
+<div class="callout" style="margin-top:18px">
+<strong>Visão do projeto:</strong> utilizar o conhecimento técnico da AM2 em PACS e integração com a experiência operacional da Telemedi em telerradiologia para desenvolver uma plataforma mais completa, parametrizável e preparada para operações de grande escala.
+</div>
+
+<div class="callout warn" style="margin-top:14px">
+<strong>Importante:</strong> sugestões e necessidades identificadas durante o projeto serão avaliadas conjuntamente quanto à aplicabilidade, prioridade e incorporação ao produto, buscando transformar demandas recorrentes em funcionalidades padrão e configuráveis da nova plataforma.
+</div>
+</section>
+
+<section id="responsabilidades">
+<h2>9. Próximos passos</h2>
+<p class="intro">Sugerimos que o projeto seja iniciado pelo levantamento técnico e operacional, sem compromisso de virada até que os requisitos críticos estejam preparados e homologados.</p>
+<div class="grid4">
+<div class="card"><h3>1. Inventário</h3><p>Consolidar clientes, integrações, layouts e fluxos.</p></div>
+<div class="card"><h3>2. Priorização</h3><p>Definir o que é obrigatório para a virada e o que pode evoluir posteriormente.</p></div>
+<div class="card"><h3>3. Desenvolvimento</h3><p>Construir, parametrizar e testar os recursos necessários.</p></div>
+<div class="card"><h3>4. Go/No-Go</h3><p>Após homologação conjunta, definir a data e executar a migração integral.</p></div>
+</div>
+<div class="callout" style="margin-top:18px"><strong>Visão da parceria:</strong> utilizar este projeto para construir uma plataforma cada vez mais parametrizável e replicável, reduzindo esforço nas próximas implantações e criando novas oportunidades comerciais para AM2 e Telemedi.</div>
+</section>
+
+</main>
+<footer>AM2 Soluções em Tecnologia para Saúde • Documento de Planejamento e Evolução da Plataforma de Telerradiologia</footer>
+
+<script>
+const STORAGE_KEY = "am2_telemedi_questionario_v1";
+
+function coletarDados(){
+  return [...document.querySelectorAll(".qitem")].map(item => ({
+    id: item.dataset.qid,
+    categoria: item.dataset.category,
+    pergunta: item.querySelector(".qtext").innerText.trim(),
+    resposta: item.querySelector(".q-answer").value.trim(),
+    responsavel: item.querySelector(".q-owner").value.trim(),
+    status: item.querySelector(".q-status").value,
+    prazo_observacao: item.querySelector(".q-note").value.trim()
+  }));
+}
+function salvar(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(coletarDados()));
+  atualizarProgresso();
+}
+function carregar(){
+  try{
+    const dados = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    const mapa = Object.fromEntries(dados.map(x => [String(x.id), x]));
+    document.querySelectorAll(".qitem").forEach(item => {
+      const d = mapa[item.dataset.qid];
+      if(!d) return;
+      item.querySelector(".q-answer").value = d.resposta || "";
+      item.querySelector(".q-owner").value = d.responsavel || "";
+      item.querySelector(".q-status").value = d.status || "Não respondido";
+      item.querySelector(".q-note").value = d.prazo_observacao || "";
+    });
+  }catch(e){}
+  atualizarProgresso();
+}
+function atualizarProgresso(){
+  const dados = coletarDados();
+  const respondidas = dados.filter(d => d.resposta || d.status==="Respondido" || d.status==="Não se aplica").length;
+  const total = dados.length;
+  const pct = total ? Math.round(respondidas/total*100) : 0;
+  document.getElementById("progressText").textContent = `${respondidas} de ${total} respondidas — ${pct}%`;
+  document.getElementById("progressBar").style.width = pct+"%";
+}
+function limparRespostas(){
+  if(!confirm("Deseja realmente apagar todas as respostas salvas neste navegador?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll(".q-answer,.q-owner,.q-note").forEach(el=>el.value="");
+  document.querySelectorAll(".q-status").forEach(el=>el.value="Não respondido");
+  atualizarProgresso();
+}
+function baixarBlob(blob, nome){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=nome;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
+}
+function esc(v){
+  return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function exportarXLS(){
+  const dados=coletarDados();
+  let rows=dados.map(d=>`<tr><td>${esc(d.categoria)}</td><td>${esc(d.id)}</td><td>${esc(d.pergunta)}</td><td>${esc(d.resposta)}</td><td>${esc(d.responsavel)}</td><td>${esc(d.status)}</td><td>${esc(d.prazo_observacao)}</td></tr>`).join("");
+  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><table border="1"><tr><th>Categoria</th><th>Nº</th><th>Pergunta</th><th>Resposta Telemedi</th><th>Responsável</th><th>Status</th><th>Prazo / Observação</th></tr>${rows}</table></body></html>`;
+  baixarBlob(new Blob(["\ufeff",doc],{type:"application/vnd.ms-excel;charset=utf-8"}),"Levantamento_AM2_Telemedi.xls");
+}
+function csvCell(v){return `"${String(v??"").replace(/"/g,'""')}"`}
+function exportarCSV(){
+  const dados=coletarDados();
+  const header=["Categoria","Nº","Pergunta","Resposta Telemedi","Responsável","Status","Prazo / Observação"];
+  const lines=[header.map(csvCell).join(";")];
+  dados.forEach(d=>lines.push([d.categoria,d.id,d.pergunta,d.resposta,d.responsavel,d.status,d.prazo_observacao].map(csvCell).join(";")));
+  baixarBlob(new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"}),"Levantamento_AM2_Telemedi.csv");
+}
+document.addEventListener("input", e => {
+  if(e.target.closest(".qitem")) salvar();
+});
+document.addEventListener("change", e => {
+  if(e.target.closest(".qitem")) salvar();
+});
+carregar();
+</script>
+
+</body>
+</html>
