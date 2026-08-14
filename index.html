@@ -235,7 +235,8 @@
     <a href="#migracao">Migração</a>
     <a href="#riscos">Riscos</a>
     <a href="#financeiro">Financeiro</a>
-    <a href="#reuniao">Checklist reunião</a>
+    <a href="#reuniao">Checklist</a>
+    <a href="#perguntas">Perguntas</a>
   </div>
 </nav>
 
@@ -419,7 +420,7 @@
 </section>
 
 <section id="reuniao">
-  <h2>9. Checklist para a reunião</h2>
+  <h2>9. Checklist rápido para a reunião</h2>
   <p class="section-intro">O objetivo não é sair com uma data para migrar os 40 clientes, e sim reduzir as incógnitas e definir o MVP.</p>
 
   <div class="checklist">
@@ -446,9 +447,147 @@
   </div>
 </section>
 
+
+<section id="perguntas">
+  <h2>10. Perguntas detalhadas para a reunião</h2>
+  <p class="section-intro">Estas perguntas devem nos ajudar a fechar o inventário técnico, operacional e comercial antes de definir cronograma de migração em escala.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🏥 Clientes e ambiente atual</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>1.</span><div>Podemos receber a relação nominal dos <strong>40 clientes atuais</strong>?</div></div>
+        <div class="check"><span>2.</span><div>Quais são exatamente as <strong>15 integrações existentes</strong> hoje?</div></div>
+        <div class="check"><span>3.</span><div>Qual PACS, RIS, HIS ou ERP cada cliente utiliza?</div></div>
+        <div class="check"><span>4.</span><div>Qual a versão de cada sistema atualmente em produção?</div></div>
+        <div class="check"><span>5.</span><div>Há clientes com mais de um sistema integrado simultaneamente?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🔌 Integrações e interoperabilidade</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>6.</span><div>Existe documentação técnica das integrações atuais?</div></div>
+        <div class="check"><span>7.</span><div>As integrações utilizam API REST, HL7, DICOM, DICOMweb ou outro padrão?</div></div>
+        <div class="check"><span>8.</span><div>Como cada sistema envia pedidos ou informações do exame?</div></div>
+        <div class="check"><span>9.</span><div>Como cada sistema recebe o laudo de volta: HL7, API, PDF, DICOM SR ou outro formato?</div></div>
+        <div class="check"><span>10.</span><div>Existe ambiente de homologação e contato técnico do fornecedor para cada integração?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📝 Laudos e produtividade</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>11.</span><div>Quantos <strong>layouts de laudo</strong> existem hoje entre os clientes?</div></div>
+        <div class="check"><span>12.</span><div>Há layouts diferentes por modalidade, unidade ou médico?</div></div>
+        <div class="check"><span>13.</span><div>Quantos modelos/templates de conteúdo médico precisam ser migrados?</div></div>
+        <div class="check"><span>14.</span><div>Como funciona atualmente a revisão, correção e versionamento de laudos?</div></div>
+        <div class="check"><span>15.</span><div>Quem administra hoje logos, cabeçalhos, rodapés, assinaturas e identidade visual?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧠 Distribuição e SLA</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>16.</span><div>Como funciona atualmente a distribuição dos exames entre os radiologistas?</div></div>
+        <div class="check"><span>17.</span><div>Existem regras por cliente, modalidade, especialidade, prioridade, escala ou carga?</div></div>
+        <div class="check"><span>18.</span><div>Como funciona a escala de radiologistas e quem pode laudar cada tipo de exame?</div></div>
+        <div class="check"><span>19.</span><div>Como são determinados e alterados os níveis de prioridade?</div></div>
+        <div class="check"><span>20.</span><div>Como é feito hoje o escalonamento quando um exame crítico se aproxima ou ultrapassa o SLA?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💬 Comunicação e operação</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>21.</span><div>Como funciona hoje a comunicação entre suporte e radiologista?</div></div>
+        <div class="check"><span>22.</span><div>É necessário anexar pedido médico, imagens não DICOM, PDFs, fotos ou outros documentos?</div></div>
+        <div class="check"><span>23.</span><div>Existem mensagens ou observações que precisam ficar vinculadas ao exame?</div></div>
+        <div class="check"><span>24.</span><div>Quais relatórios e dashboards são indispensáveis para gestão?</div></div>
+        <div class="check"><span>25.</span><div>Quais indicadores são acompanhados hoje: TAT, SLA, produtividade, volume, pendências, retrabalho?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🗄️ Acervo, legado e infraestrutura</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>26.</span><div>Qual formato desejam para a cópia do acervo próprio: servidor DICOM, PACS Storage, object storage ou outro?</div></div>
+        <div class="check"><span>27.</span><div>Que infraestrutura própria a Telemedi possui hoje para receber esse acervo?</div></div>
+        <div class="check"><span>28.</span><div>O fornecedor atual já informou como disponibilizará o legado após eventual rescisão?</div></div>
+        <div class="check"><span>29.</span><div>Existe alguma estimativa de quantidade de TB e quantidade histórica de exames?</div></div>
+        <div class="check"><span>30.</span><div>Existe necessidade de manter todo o legado online ou apenas permitir consulta/importação sob demanda?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Estratégia de implantação</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>31.</span><div>Os novos clientes podem entrar diretamente na plataforma AM2 a partir da assinatura?</div></div>
+        <div class="check"><span>32.</span><div>Podemos escolher inicialmente 2 ou 3 clientes piloto com perfis diferentes?</div></div>
+        <div class="check"><span>33.</span><div>Quais clientes seriam mais adequados para o piloto simples e para o piloto com integração?</div></div>
+        <div class="check"><span>34.</span><div>Qual seria o critério objetivo para considerar a plataforma homologada para iniciar migração em escala?</div></div>
+        <div class="check"><span>35.</span><div>Existe alguma data contratual ou compromisso comercial que obrigue migração de clientes específicos?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>👥 Governança e responsabilidades</h3>
+      <div class="checklist" style="grid-template-columns:1fr">
+        <div class="check"><span>36.</span><div>Quem será o responsável técnico e o responsável operacional do projeto na Telemedi?</div></div>
+        <div class="check"><span>37.</span><div>Quem aprovará homologações e aceitará formalmente cada cliente migrado?</div></div>
+        <div class="check"><span>38.</span><div>Quais atividades permanecerão definitivamente no suporte N1 da Telemedi?</div></div>
+        <div class="check"><span>39.</span><div>Quais situações deverão ser escaladas para N2/N3 da AM2?</div></div>
+        <div class="check"><span>40.</span><div>Qual frequência de reunião de acompanhamento do projeto: semanal durante implantação e mensal após estabilização?</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warning" style="margin-top:20px">
+    <strong>Importante:</strong> não precisamos responder todas essas perguntas na primeira reunião, mas precisamos sair com os responsáveis e os próximos passos definidos para obter cada informação. O principal é reduzir as incógnitas antes de assumir cronogramas ou compromissos de migração em massa.
+  </div>
+</section>
+
 <section>
-  <h2>10. Princípio estratégico do projeto</h2>
-  <p class="section-intro">A regra que deve orientar todas as decisões de desenvolvimento.</p>
+  <h2>11. Decisões que precisam sair da reunião</h2>
+  <p class="section-intro">Mais importante do que definir uma data final de migração é validar o modelo do projeto.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="icon">1️⃣</div>
+      <h3>Estratégia de entrada</h3>
+      <p>Confirmar que os novos clientes entram primeiro na AM2 e que a base atual será migrada de forma gradual.</p>
+    </div>
+    <div class="card">
+      <div class="icon">2️⃣</div>
+      <h3>MVP</h3>
+      <p>Definir exatamente o que precisa estar pronto para colocar o primeiro novo cliente em produção com segurança.</p>
+    </div>
+    <div class="card">
+      <div class="icon">3️⃣</div>
+      <h3>Inventário</h3>
+      <p>Responsáveis e prazo para levantar os 40 clientes, integrações, layouts, workflows, prioridades e regras atuais.</p>
+    </div>
+    <div class="card">
+      <div class="icon">4️⃣</div>
+      <h3>Pilotos</h3>
+      <p>Escolher clientes piloto representativos: um cenário simples e pelo menos um cenário com integração relevante.</p>
+    </div>
+    <div class="card">
+      <div class="icon">5️⃣</div>
+      <h3>Governança</h3>
+      <p>Definir responsáveis técnicos, fluxo de aprovação, homologação, suporte N1 e escalonamento N2/N3.</p>
+    </div>
+    <div class="card">
+      <div class="icon">6️⃣</div>
+      <h3>Critério de migração</h3>
+      <p>Estabelecer critérios objetivos para considerar a plataforma madura e iniciar os lotes de migração.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>12. Princípio estratégico do projeto</h2>
+  <p class="section-intro">A regra que deve orientar todas as decisões de desenvolvimento e customização.</p>
   <div class="card" style="border:2px solid #b7e4df;background:#f3fffd">
     <h3 style="font-size:25px">Cada necessidade recorrente deve virar uma funcionalidade configurável — não uma customização exclusiva.</h3>
     <p>Se fizermos isso, o esforço inicial da Telemedi se transforma na base de uma nova plataforma AM2 de telerradiologia que poderá atender futuras operações com 10, 50 ou 100 clientes sem repetir todo o desenvolvimento.</p>
