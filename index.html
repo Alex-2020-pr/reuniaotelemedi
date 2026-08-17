@@ -104,6 +104,31 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 .big{font-size:34px;font-weight:950}
 </style>
 
+
+<style>
+.confidential-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:18px;padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:12px;font-weight:850;letter-spacing:.04em;text-transform:uppercase
+}
+.confidential-note{
+  margin:0 0 22px;padding:13px 16px;border-radius:13px;
+  background:#fff8e8;border:1px solid #f0d99e;color:#704b00;
+  font-size:13px
+}
+.confidential-watermark{
+  position:fixed;right:16px;bottom:12px;z-index:9999;
+  font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;
+  color:#667085;background:rgba(255,255,255,.88);
+  border:1px solid #d9e1e7;border-radius:7px;padding:5px 8px;
+  pointer-events:none
+}
+@media print{
+  .confidential-watermark{display:block!important;position:fixed;right:8mm;bottom:7mm}
+}
+</style>
+
 </head>
 <body>
 <header>
@@ -113,13 +138,18 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 <h1>Preparação da Nova Plataforma de Telerradiologia</h1>
 <p class="lead">Documento para alinhamento dos pontos de atenção, requisitos, responsabilidades e estratégia de preparação antes da migração integral da operação.</p>
 </div>
+<div class="wrap"><div class="confidential-badge">🔒 Informação Confidencial • Uso exclusivo AM2 + Telemedi</div></div>
 </header>
 
 <nav><div class="wrap">
-<a href="#objetivo">Objetivo</a><a href="#estrategia">Estratégia</a><a href="#escopo">Preparação</a><a href="#atencao">Pontos de atenção</a><a href="#integracoes">Integrações</a><a href="#virada">Virada</a><a href="#perguntas">Perguntas</a><a href="#nova-plataforma">Nova Plataforma Tele</a><a href="#responsabilidades">Responsabilidades</a>
+<a href="#objetivo">Objetivo</a><a href="#estrategia">Estratégia</a><a href="#escopo">Preparação</a><a href="#atencao">Pontos de atenção</a><a href="#integracoes">Integrações</a><a href="#virada">Virada</a><a href="#perguntas">Perguntas</a><a href="#comercial">Valores</a><a href="#nova-plataforma">Nova Plataforma Tele</a><a href="#responsabilidades">Próximos passos</a>
 <a href="#comercial">Valores</a></div></nav>
 
 <main class="wrap">
+<div class="confidential-note">
+<strong>CONFIDENCIALIDADE:</strong> este material contém informações comerciais, técnicas e estratégicas destinadas exclusivamente à avaliação do projeto entre AM2 e Telemedi. Não deve ser reproduzido, compartilhado ou encaminhado a terceiros sem autorização prévia das partes envolvidas.
+</div>
+
 
 <section id="objetivo">
 <h2>1. Objetivo do projeto</h2>
@@ -516,58 +546,6 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 </div>
 </section>
 
-<section id="nova-plataforma" class="partner">
-<h2>8. Nova Plataforma AM2 para Telerradiologia</h2>
-<p class="intro">Como parte deste projeto, a AM2 propõe desenvolver uma nova versão da plataforma especialmente direcionada às necessidades de empresas de telerradiologia, considerando a experiência operacional da Telemedi e os requisitos identificados durante o planejamento e a implantação.</p>
-
-<div class="grid3">
-<div class="card">
-<div class="ico">🧠</div>
-<h3>Construída para operações de Tele</h3>
-<p>A nova versão será estruturada para operações que atendem múltiplos clientes, unidades e radiologistas, com alto volume de exames e diferentes níveis de prioridade.</p>
-</div>
-<div class="card">
-<div class="ico">🤝</div>
-<h3>Desenvolvimento colaborativo</h3>
-<p>A experiência prática da Telemedi poderá contribuir com sugestões de fluxos, funcionalidades, indicadores e melhorias durante a evolução da nova plataforma.</p>
-</div>
-<div class="card">
-<div class="ico">🎁</div>
-<h3>Uso sem custo adicional</h3>
-<p>A Telemedi terá direito de utilizar esta nova versão específica para telerradiologia sem cobrança adicional pelo acesso às funcionalidades incorporadas à plataforma.</p>
-</div>
-</div>
-
-<h3 style="margin-top:24px">Funcionalidades previstas para a nova versão</h3>
-<div class="grid2">
-<div class="card">
-<div class="check"><b>✓</b><span>Gestão multiempresa e múltiplas unidades.</span></div>
-<div class="check"><b>✓</b><span>Central única de exames de todos os clientes.</span></div>
-<div class="check"><b>✓</b><span>Distribuição inteligente por modalidade, especialidade, prioridade, cliente e escala.</span></div>
-<div class="check"><b>✓</b><span>Controle de SLA e TAT com alertas e escalonamento.</span></div>
-<div class="check"><b>✓</b><span>Gestão de radiologistas, escalas e disponibilidade.</span></div>
-<div class="check"><b>✓</b><span>Chat e comunicação vinculados ao exame.</span></div>
-</div>
-<div class="card">
-<div class="check"><b>✓</b><span>Construtor e gerenciamento de layouts de laudo por cliente.</span></div>
-<div class="check"><b>✓</b><span>Gerenciamento de integrações, filas, erros e reprocessamentos.</span></div>
-<div class="check"><b>✓</b><span>Ferramenta de De/Para de procedimentos e códigos.</span></div>
-<div class="check"><b>✓</b><span>Dashboards operacionais e gerenciais.</span></div>
-<div class="check"><b>✓</b><span>Versionamento, revisão e rastreabilidade de laudos.</span></div>
-<div class="check"><b>✓</b><span>Novas funcionalidades definidas ao longo da evolução do produto.</span></div>
-</div>
-</div>
-
-<div class="callout" style="margin-top:18px">
-<strong>Visão do projeto:</strong> utilizar o conhecimento técnico da AM2 em PACS e integração com a experiência operacional da Telemedi em telerradiologia para desenvolver uma plataforma mais completa, parametrizável e preparada para operações de grande escala.
-</div>
-
-<div class="callout warn" style="margin-top:14px">
-<strong>Importante:</strong> sugestões e necessidades identificadas durante o projeto serão avaliadas conjuntamente quanto à aplicabilidade, prioridade e incorporação ao produto, buscando transformar demandas recorrentes em funcionalidades padrão e configuráveis da nova plataforma.
-</div>
-</section>
-
-
 <section id="comercial" class="price">
 <h2>8. Proposta Comercial</h2>
 <p class="intro">Modelo composto por licenciamento mensal da plataforma + bilhetagem por categoria e faixa de volume. O enquadramento é realizado separadamente para exames de alta e baixa complexidade.</p>
@@ -629,8 +607,62 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 </div>
 </section>
 
+<section id="nova-plataforma" class="partner">
+<h2>9. Nova Plataforma AM2 para Telerradiologia</h2>
+<p class="intro">Como parte deste projeto, a AM2 propõe desenvolver uma nova versão da plataforma especialmente direcionada às necessidades de empresas de telerradiologia, considerando a experiência operacional da Telemedi e os requisitos identificados durante o planejamento e a implantação.</p>
+
+<div class="grid3">
+<div class="card">
+<div class="ico">🧠</div>
+<h3>Construída para operações de Tele</h3>
+<p>A nova versão será estruturada para operações que atendem múltiplos clientes, unidades e radiologistas, com alto volume de exames e diferentes níveis de prioridade.</p>
+</div>
+<div class="card">
+<div class="ico">🤝</div>
+<h3>Desenvolvimento colaborativo</h3>
+<p>A experiência prática da Telemedi poderá contribuir com sugestões de fluxos, funcionalidades, indicadores e melhorias durante a evolução da nova plataforma.</p>
+</div>
+<div class="card">
+<div class="ico">🎁</div>
+<h3>Uso sem custo adicional</h3>
+<p>A Telemedi terá direito de utilizar esta nova versão específica para telerradiologia sem cobrança adicional pelo acesso às funcionalidades incorporadas à plataforma.</p>
+</div>
+</div>
+
+<h3 style="margin-top:24px">Funcionalidades previstas para a nova versão</h3>
+<div class="grid2">
+<div class="card">
+<div class="check"><b>✓</b><span>Gestão multiempresa e múltiplas unidades.</span></div>
+<div class="check"><b>✓</b><span>Central única de exames de todos os clientes.</span></div>
+<div class="check"><b>✓</b><span>Distribuição inteligente por modalidade, especialidade, prioridade, cliente e escala.</span></div>
+<div class="check"><b>✓</b><span>Controle de SLA e TAT com alertas e escalonamento.</span></div>
+<div class="check"><b>✓</b><span>Gestão de radiologistas, escalas e disponibilidade.</span></div>
+<div class="check"><b>✓</b><span>Chat e comunicação vinculados ao exame.</span></div>
+</div>
+<div class="card">
+<div class="check"><b>✓</b><span>Construtor e gerenciamento de layouts de laudo por cliente.</span></div>
+<div class="check"><b>✓</b><span>Gerenciamento de integrações, filas, erros e reprocessamentos.</span></div>
+<div class="check"><b>✓</b><span>Ferramenta de De/Para de procedimentos e códigos.</span></div>
+<div class="check"><b>✓</b><span>Dashboards operacionais e gerenciais.</span></div>
+<div class="check"><b>✓</b><span>Versionamento, revisão e rastreabilidade de laudos.</span></div>
+<div class="check"><b>✓</b><span>Novas funcionalidades definidas ao longo da evolução do produto.</span></div>
+</div>
+</div>
+
+<div class="callout" style="margin-top:18px">
+<strong>Visão do projeto:</strong> utilizar o conhecimento técnico da AM2 em PACS e integração com a experiência operacional da Telemedi em telerradiologia para desenvolver uma plataforma mais completa, parametrizável e preparada para operações de grande escala.
+</div>
+
+<div class="callout warn" style="margin-top:14px">
+<strong>Importante:</strong> sugestões e necessidades identificadas durante o projeto serão avaliadas conjuntamente quanto à aplicabilidade, prioridade e incorporação ao produto, buscando transformar demandas recorrentes em funcionalidades padrão e configuráveis da nova plataforma.
+</div>
+</section>
+
+
+
+
 <section id="responsabilidades">
-<h2>9. Próximos passos</h2>
+<h2>10. Próximos passos</h2>
 <p class="intro">Sugerimos que o projeto seja iniciado pelo levantamento técnico e operacional, sem compromisso de virada até que os requisitos críticos estejam preparados e homologados.</p>
 <div class="grid4">
 <div class="card"><h3>1. Inventário</h3><p>Consolidar clientes, integrações, layouts e fluxos.</p></div>
@@ -717,7 +749,33 @@ function exportarXLS(){
 .big{font-size:34px;font-weight:950}
 </style>
 
-</head><body><table border="1"><tr><th>Categoria</th><th>Nº</th><th>Pergunta</th><th>Resposta Telemedi</th><th>Responsável</th><th>Status</th><th>Prazo / Observação</th></tr>${rows}</table></body></html>`;
+
+<style>
+.confidential-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:18px;padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:12px;font-weight:850;letter-spacing:.04em;text-transform:uppercase
+}
+.confidential-note{
+  margin:0 0 22px;padding:13px 16px;border-radius:13px;
+  background:#fff8e8;border:1px solid #f0d99e;color:#704b00;
+  font-size:13px
+}
+.confidential-watermark{
+  position:fixed;right:16px;bottom:12px;z-index:9999;
+  font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;
+  color:#667085;background:rgba(255,255,255,.88);
+  border:1px solid #d9e1e7;border-radius:7px;padding:5px 8px;
+  pointer-events:none
+}
+@media print{
+  .confidential-watermark{display:block!important;position:fixed;right:8mm;bottom:7mm}
+}
+</style>
+
+</head><body><table border="1"><tr><th>Categoria</th><th>Nº</th><th>Pergunta</th><th>Resposta Telemedi</th><th>Responsável</th><th>Status</th><th>Prazo / Observação</th></tr>${rows}</table><div class="confidential-watermark">Confidencial • AM2 + Telemedi</div>
+</body></html>`;
   baixarBlob(new Blob(["\ufeff",doc],{type:"application/vnd.ms-excel;charset=utf-8"}),"Levantamento_AM2_Telemedi.xls");
 }
 function csvCell(v){return `"${String(v??"").replace(/"/g,'""')}"`}
@@ -737,5 +795,6 @@ document.addEventListener("change", e => {
 carregar();
 </script>
 
+<div class="confidential-watermark">Confidencial • AM2 + Telemedi</div>
 </body>
 </html>
