@@ -93,6 +93,17 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 }
 </style>
 
+
+<style>
+.price{background:linear-gradient(135deg,#071d2e,#103e5e);color:#fff;border:0}
+.price h2,.price h3{color:#fff}
+.price .intro{color:#d6e4ec}
+.price th{background:rgba(255,255,255,.08);color:#fff}
+.price td{border-color:rgba(255,255,255,.14)}
+.priceBox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);border-radius:17px;padding:18px}
+.big{font-size:34px;font-weight:950}
+</style>
+
 </head>
 <body>
 <header>
@@ -106,7 +117,7 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 
 <nav><div class="wrap">
 <a href="#objetivo">Objetivo</a><a href="#estrategia">Estratégia</a><a href="#escopo">Preparação</a><a href="#atencao">Pontos de atenção</a><a href="#integracoes">Integrações</a><a href="#virada">Virada</a><a href="#perguntas">Perguntas</a><a href="#nova-plataforma">Nova Plataforma Tele</a><a href="#responsabilidades">Responsabilidades</a>
-</div></nav>
+<a href="#comercial">Valores</a></div></nav>
 
 <main class="wrap">
 
@@ -556,6 +567,68 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 </div>
 </section>
 
+
+<section id="comercial" class="price">
+<h2>8. Proposta Comercial</h2>
+<p class="intro">Modelo composto por licenciamento mensal da plataforma + bilhetagem por categoria e faixa de volume. O enquadramento é realizado separadamente para exames de alta e baixa complexidade.</p>
+
+<div class="grid3">
+  <div class="priceBox">
+    <div>Licenciamento da Plataforma Corporativa</div>
+    <div class="big">R$ 2.000</div>
+    <div>/ mês</div>
+  </div>
+  <div class="priceBox">
+    <div>Alta complexidade — volume atual</div>
+    <div class="big">R$ 0,79</div>
+    <div>/ exame</div>
+  </div>
+  <div class="priceBox">
+    <div>Baixa complexidade — volume atual</div>
+    <div class="big">R$ 0,65</div>
+    <div>/ exame</div>
+  </div>
+</div>
+
+<h3 style="margin-top:24px">Tabela de valores por exame</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Volume mensal por categoria</th>
+      <th>Alta Complexidade</th>
+      <th>Baixa Complexidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Até 5.000</td><td><strong>R$ 1,15</strong></td><td><strong>R$ 0,75</strong></td></tr>
+    <tr><td>5.001 a 10.000</td><td><strong>R$ 0,95</strong></td><td><strong>R$ 0,65</strong></td></tr>
+    <tr><td>10.001 a 25.000</td><td><strong>R$ 0,79</strong></td><td><strong>R$ 0,55</strong></td></tr>
+    <tr><td>25.001 a 50.000</td><td><strong>R$ 0,72</strong></td><td><strong>R$ 0,49</strong></td></tr>
+    <tr><td>Acima de 50.000</td><td colspan="2"><strong>Sob consulta</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="grid2" style="margin-top:18px">
+  <div class="priceBox">
+    <h3>Projeção com o volume atual informado</h3>
+    <p>
+      14.302 exames de alta × R$ 0,79 = <strong>R$ 11.298,58</strong><br>
+      6.445 exames de baixa × R$ 0,65 = <strong>R$ 4.189,25</strong><br>
+      Licenciamento da plataforma = <strong>R$ 2.000,00</strong>
+    </p>
+  </div>
+  <div class="priceBox">
+    <div>Total mensal projetado</div>
+    <div class="big">R$ 17.487,83</div>
+    <div>considerando a volumetria atual informada</div>
+  </div>
+</div>
+
+<div class="callout" style="margin-top:18px;background:rgba(255,255,255,.08);border-left-color:#7de3df;color:#eefcff">
+  <strong>Observação:</strong> a tabela é aplicada separadamente por categoria. No cenário atual, a alta complexidade enquadra-se na faixa de 10.001 a 25.000 exames e a baixa complexidade na faixa de 5.001 a 10.000 exames.
+</div>
+</section>
+
 <section id="responsabilidades">
 <h2>9. Próximos passos</h2>
 <p class="intro">Sugerimos que o projeto seja iniciado pelo levantamento técnico e operacional, sem compromisso de virada até que os requisitos críticos estejam preparados e homologados.</p>
@@ -633,7 +706,18 @@ function esc(v){
 function exportarXLS(){
   const dados=coletarDados();
   let rows=dados.map(d=>`<tr><td>${esc(d.categoria)}</td><td>${esc(d.id)}</td><td>${esc(d.pergunta)}</td><td>${esc(d.resposta)}</td><td>${esc(d.responsavel)}</td><td>${esc(d.status)}</td><td>${esc(d.prazo_observacao)}</td></tr>`).join("");
-  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><table border="1"><tr><th>Categoria</th><th>Nº</th><th>Pergunta</th><th>Resposta Telemedi</th><th>Responsável</th><th>Status</th><th>Prazo / Observação</th></tr>${rows}</table></body></html>`;
+  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+.price{background:linear-gradient(135deg,#071d2e,#103e5e);color:#fff;border:0}
+.price h2,.price h3{color:#fff}
+.price .intro{color:#d6e4ec}
+.price th{background:rgba(255,255,255,.08);color:#fff}
+.price td{border-color:rgba(255,255,255,.14)}
+.priceBox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);border-radius:17px;padding:18px}
+.big{font-size:34px;font-weight:950}
+</style>
+
+</head><body><table border="1"><tr><th>Categoria</th><th>Nº</th><th>Pergunta</th><th>Resposta Telemedi</th><th>Responsável</th><th>Status</th><th>Prazo / Observação</th></tr>${rows}</table></body></html>`;
   baixarBlob(new Blob(["\ufeff",doc],{type:"application/vnd.ms-excel;charset=utf-8"}),"Levantamento_AM2_Telemedi.xls");
 }
 function csvCell(v){return `"${String(v??"").replace(/"/g,'""')}"`}
