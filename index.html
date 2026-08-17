@@ -198,7 +198,7 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 
 <section id="perguntas">
 <h2>7. Levantamento técnico e operacional</h2>
-<p class="intro">Questionário interativo para preenchimento conjunto. As respostas ficam salvas neste navegador e podem ser impressas ou exportadas em formato Excel.</p>
+<p class="intro">Questionário objetivo para preenchimento conjunto, contendo somente os pontos selecionados para o levantamento do projeto. As respostas ficam salvas neste navegador e podem ser impressas ou exportadas em formato Excel.</p>
 <div class="qtoolbar">
   <button class="qbtn secondary" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
   <button class="qbtn" onclick="exportarXLS()">📊 Exportar Excel (.xls)</button>
@@ -213,37 +213,7 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
 
 <div class="qgroup"><h3>Clientes e sistemas</h3>
 
-<div class="qitem" data-qid="1" data-category="Clientes e sistemas">
-  <div class="qhead">
-    <div class="qnum">01</div>
-    <div class="qtext">Qual a relação definitiva dos clientes e o volume aproximado por cliente?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
 
 <div class="qitem" data-qid="2" data-category="Clientes e sistemas">
   <div class="qhead">
@@ -277,69 +247,9 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="3" data-category="Clientes e sistemas">
-  <div class="qhead">
-    <div class="qnum">03</div>
-    <div class="qtext">Qual a versão de cada sistema em produção?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
 
-<div class="qitem" data-qid="4" data-category="Clientes e sistemas">
-  <div class="qhead">
-    <div class="qnum">04</div>
-    <div class="qtext">Quais integrações existem atualmente e quais são indispensáveis para a virada?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
+
 
 <div class="qitem" data-qid="5" data-category="Clientes e sistemas">
   <div class="qhead">
@@ -407,37 +317,7 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="7" data-category="Integrações e interoperabilidade">
-  <div class="qhead">
-    <div class="qnum">07</div>
-    <div class="qtext">As integrações utilizam API REST, HL7, DICOM, DICOMweb ou outro padrão?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
 
 <div class="qitem" data-qid="8" data-category="Integrações e interoperabilidade">
   <div class="qhead">
@@ -503,69 +383,9 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="10" data-category="Integrações e interoperabilidade">
-  <div class="qhead">
-    <div class="qnum">10</div>
-    <div class="qtext">Existe ambiente de homologação e contato técnico do fornecedor para cada integração?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
 
-<div class="qitem" data-qid="11" data-category="Integrações e interoperabilidade">
-  <div class="qhead">
-    <div class="qnum">11</div>
-    <div class="qtext">Existem custos, licenças ou taxas cobradas pelos fornecedores terceiros para liberar integrações?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
+
 </div>
 <div class="qgroup"><h3>Laudos e workflow</h3>
 
@@ -1053,37 +873,7 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="27" data-category="Comunicação, operação e gestão">
-  <div class="qhead">
-    <div class="qnum">27</div>
-    <div class="qtext">Quais indicadores são acompanhados hoje: TAT, SLA, produtividade, volume, pendências, retrabalho?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
 </div>
 <div class="qgroup"><h3>Acervo, legado e infraestrutura</h3>
 
@@ -1215,69 +1005,9 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="32" data-category="Acervo, legado e infraestrutura">
-  <div class="qhead">
-    <div class="qnum">32</div>
-    <div class="qtext">É necessário manter todo o legado online ou poderá ser consultado/importado sob demanda?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
 
-<div class="qitem" data-qid="33" data-category="Acervo, legado e infraestrutura">
-  <div class="qhead">
-    <div class="qnum">33</div>
-    <div class="qtext">Qual formato é desejado para a cópia do acervo: Storage DICOM, PACS, object storage ou outro?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
+
 </div>
 <div class="qgroup"><h3>Governança, suporte e contingência</h3>
 
@@ -1345,101 +1075,11 @@ footer{text-align:center;color:#667085;font-size:12px;padding:0 20px 40px}
   <div class="qsave">Salvamento automático neste navegador.</div>
 </div>
 
-<div class="qitem" data-qid="36" data-category="Governança, suporte e contingência">
-  <div class="qhead">
-    <div class="qnum">36</div>
-    <div class="qtext">Quais atividades permanecerão definitivamente no suporte N1 da Telemedi?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
 
-<div class="qitem" data-qid="37" data-category="Governança, suporte e contingência">
-  <div class="qhead">
-    <div class="qnum">37</div>
-    <div class="qtext">Quais situações deverão ser escaladas para o suporte N2/N3 da AM2?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
 
-<div class="qitem" data-qid="38" data-category="Governança, suporte e contingência">
-  <div class="qhead">
-    <div class="qnum">38</div>
-    <div class="qtext">Qual será a frequência das reuniões de acompanhamento durante o projeto?</div>
-  </div>
-  <div class="qfields">
-    <div>
-      <label>Resposta / Informação</label>
-      <textarea class="q-answer" placeholder="Digite a resposta..."></textarea>
-    </div>
-    <div>
-      <label>Responsável</label>
-      <input class="q-owner" type="text" placeholder="Nome / área">
-    </div>
-    <div>
-      <label>Status</label>
-      <select class="q-status">
-        <option value="Não respondido">Não respondido</option>
-        <option value="Em levantamento">Em levantamento</option>
-        <option value="Respondido">Respondido</option>
-        <option value="Depende de terceiro">Depende de terceiro</option>
-        <option value="Não se aplica">Não se aplica</option>
-      </select>
-    </div>
-    <div>
-      <label>Prazo / Observação</label>
-      <input class="q-note" type="text" placeholder="Prazo ou observação">
-    </div>
-  </div>
-  <div class="qsave">Salvamento automático neste navegador.</div>
-</div>
+
+
+
 
 <div class="qitem" data-qid="39" data-category="Governança, suporte e contingência">
   <div class="qhead">
